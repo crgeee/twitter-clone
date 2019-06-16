@@ -1,0 +1,59 @@
+{
+  "name": "twitter-clone",
+  "version": "1.0.0",
+  "description": "A twitter-clone.",
+  "main": "index.js",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "author": "Christopher Gonzalez",
+  "license": "ISC",
+  "scripts": {
+    "start": "webpack-dev-server -d --display-error-details --color",
+    "build": "webpack --mode production",
+    "test": "jest",
+    "test:all": "jest --coverage",
+    "test:watch": "jest --watch -o"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.4.5",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.1.0",
+    "redux": "^4.0.1",
+    "redux-saga": "^1.0.3",
+    "styled-components": "^4.3.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.0.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^5.0.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.13.0",
+    "eslint-plugin-react-redux": "^3.0.1",
+    "eslint-plugin-redux-saga": "^1.0.0",
+    "eslint-plugin-security": "^1.4.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.8.0",
+    "jest-styled-components": "^6.3.3",
+    "prettier": "^1.18.2",
+    "redux-mock-store": "^1.5.3",
+    "redux-saga-test-plan": "^4.0.0-beta.3",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.34.0",
+    "webpack-bundle-analyzer": "^3.3.2",
+    "webpack-cli": "^3.3.4",
+    "webpack-dev-server": "^3.7.1"
+  }
+}

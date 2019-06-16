@@ -1,0 +1,38 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "extends": [
+        "airbnb",
+        "plugin:react/recommended",
+        "plugin:security/recommended",
+        "plugin:prettier/recommended",
+        "prettier/react",
+        "plugin:import/errors",
+        "plugin:import/warnings"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "prettier",
+        "security",
+        "redux-saga",
+        "react-redux"
+    ],
+    "rules": {
+        "prettier/prettier": ["warn", { "singleQuote": true }],
+        "comma-dangle": [0],
+        "react/jsx-filename-extension": [0]
+    }
+}
