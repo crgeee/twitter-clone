@@ -1,15 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
 import Logger from '../../services/Logger';
-import Tweet from '../common/Tweet';
-import SIZES from '../../constants/style';
+import ENDPOINT from '../../constants/api';
+import withLayout from '../common/withLayout';
+import List from '../common/List';
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ready: false,
+      loading: true,
       error: false,
+      page: 0,
       posts: undefined,
       users: undefined
     };
@@ -17,89 +18,50 @@ class Home extends React.Component {
 
   componentDidMount() {
     this.initialize().then(() => {
-      this.setState({ ready: true });
+      this.setState({ loading: false });
       Logger.info('home loaded');
     });
   }
 
-  // eslint-disable-next-line class-methods-use-this
   async initialize() {
-    await Promise.all([this.fetchPosts(), this.fetchUsers()]);
+    await Promise.all([this.fetchPosts(1), this.fetchUsers()]);
   }
 
-  async fetchPosts() {
-    await fetch('https://jsonplaceholder.typicode.com/posts')
+  async fetchPosts(page) {
+    await fetch(`${ENDPOINT.POSTS(page)}`)
       .then(results => results.json())
       .then(data => {
-        this.setState({ posts: data });
+        this.setState({ posts: data, page });
       });
   }
 
   async fetchUsers() {
-    await fetch('https://jsonplaceholder.typicode.com/users')
+    await fetch(ENDPOINT.USERS)
       .then(results => results.json())
       .then(data => {
         this.setState({ users: data });
       });
   }
 
+  async onPageScroll() {
+    const { page } = this.state;
+    this.fetchPosts(page + 1);
+  }
+
   render() {
-    const { ready, error, posts, users } = this.state;
+    const { error, posts, users, loading, onPageScroll} = this.state;
 
     if (error) {
       return <div>An error occurred. Please try again.</div>;
     }
 
-    if (!ready) {
+    if (loading) {
       return <div>loading</div>;
     }
     return (
-      <StyledWrapper>
-        <StyledLeft />
-        <StyledMiddle>
-          {posts.map(item => {
-            return <Tweet key={item.id} user={users[item.userId]} {...item} />;
-          })}
-        </StyledMiddle>
-        <StyledRight />
-      </StyledWrapper>
+      <List posts={posts} users={users} isError={error} isLoading={loading} onPageScroll={onPageScroll} />
     );
   }
 }
 
-const StyledWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-
-  @media (max-width: ${SIZES.tablet}) {
-    flex-direction: column;
-    flex-wrap: wrap;
-  }
-`;
-
-const StyledLeft = styled.div`
-  flex: 1;
-
-  @media (max-width: ${SIZES.tablet}) {
-    flex-basis: 100%;
-    flex: 0;
-  }
-`;
-const StyledMiddle = styled.div`
-  flex: 1;
-
-  @media (max-width: ${SIZES.tablet}) {
-    flex: 0;
-  }
-`;
-const StyledRight = styled.div`
-  flex: 1;
-
-  @media (max-width: ${SIZES.tablet}) {
-    flex: 0;
-  }
-`;
-
-export default Home;
+export default withLayout(Home);
