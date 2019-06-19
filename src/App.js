@@ -1,8 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Logger from './services/Logger';
 import Home from './components/Home/Home';
-import GlobalStyles from './components/common/GlobalStyles';
+import Layout from './components/common/Layout';
 
 class App extends React.Component {
   componentDidMount() {
@@ -11,14 +10,11 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <GlobalStyles />
+      <Layout>
         <Home />
-      </div>
+      </Layout>
     );
   }
 }
 
 export default App;
-
-ReactDOM.render(<App />, document.getElementById('app'));

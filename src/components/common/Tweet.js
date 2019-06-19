@@ -5,11 +5,17 @@ import PropTypes from 'prop-types';
 const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 10px
-  border: 1px solid #000;
+  padding: 0 0 30px;
+  margin: 30px auto 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05), 0 0px 40px rgba(0, 0, 0, 0.08);
+  border-radius: 5px;
 `;
-const StyledTitle = styled.div``;
-const StyledBody = styled.div``;
+const StyledTitle = styled.div`
+  padding: 32px;
+`;
+const StyledBody = styled.div`
+  padding: 0 32px 0 32px;
+`;
 
 const Tweet = ({ body, title, user }) => (
   <StyledWrapper>

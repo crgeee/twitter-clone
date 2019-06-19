@@ -1,8 +1,8 @@
 import React from 'react';
 import Logger from '../../services/Logger';
-import ENDPOINT from '../../constants/api';
-import withLayout from '../common/withLayout';
 import List from '../common/List';
+import { delay, fetchPosts, fetchUsers } from '../../services/Network';
+import Spinner from '../common/Spinner';
 
 class Home extends React.Component {
   constructor(props) {
@@ -24,44 +24,29 @@ class Home extends React.Component {
   }
 
   async initialize() {
-    await Promise.all([this.fetchPosts(1), this.fetchUsers()]);
-  }
-
-  async fetchPosts(page) {
-    await fetch(`${ENDPOINT.POSTS(page)}`)
-      .then(results => results.json())
-      .then(data => {
-        this.setState({ posts: data, page });
-      });
-  }
-
-  async fetchUsers() {
-    await fetch(ENDPOINT.USERS)
-      .then(results => results.json())
-      .then(data => {
-        this.setState({ users: data });
-      });
-  }
-
-  async onPageScroll() {
     const { page } = this.state;
-    this.fetchPosts(page + 1);
+    await delay(1000);
+    await Promise.all([fetchPosts(), fetchUsers(page + 1)]).then(
+      ([postsResult, usersResult]) => {
+        this.setState({ posts: postsResult, users: usersResult, page });
+      }
+    );
   }
 
   render() {
-    const { error, posts, users, loading, onPageScroll} = this.state;
+    const { error, posts, users, loading } = this.state;
 
     if (error) {
       return <div>An error occurred. Please try again.</div>;
     }
 
     if (loading) {
-      return <div>loading</div>;
+      return <Spinner />;
     }
     return (
-      <List posts={posts} users={users} isError={error} isLoading={loading} onPageScroll={onPageScroll} />
+      <List posts={posts} users={users} isError={error} isLoading={loading} />
     );
   }
 }
 
-export default withLayout(Home);
+export default Home;
