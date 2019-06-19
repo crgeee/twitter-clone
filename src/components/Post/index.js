@@ -1,5 +1,7 @@
 import React from 'react';
 
-class Post extends React.Component {}
+const Post = () => {
+  return <div>FUNS</div>;
+};
 
 export default Post;

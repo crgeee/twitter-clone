@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -17,6 +18,14 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
       }
+    ]
+  },
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        cache: true,
+        parallel: true
+      })
     ]
   },
   devServer: {

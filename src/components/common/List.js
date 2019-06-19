@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Tweet from './Tweet';
 
 const StyledWrapper = styled.div`
-  margin: 20px;
+  padding: 30px auto 0;
 `;
 
 const List = props => {

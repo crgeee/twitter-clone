@@ -10,19 +10,10 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-const Content = styled.div`
-  max-width: 500px;
-`;
-
-const Navigation = styled.div`
-  margin-top: 25px;
-`;
-
 const Layout = ({ children }) => (
   <Wrapper>
     <GlobalStyles />
-    <Navigation>home - post</Navigation>
-    <Content>{children}</Content>
+    {children}
   </Wrapper>
 );
 
