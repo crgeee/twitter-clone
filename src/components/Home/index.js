@@ -27,7 +27,7 @@ class Home extends React.Component {
 
   async initialize() {
     const { page } = this.state;
-    await delay(1000);
+    await delay(500);
     await Promise.all([fetchPosts(), fetchUsers(page + 1)])
       .then(([postsResult, usersResult]) => {
         this.setState({ posts: postsResult, users: usersResult, page });

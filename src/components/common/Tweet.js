@@ -5,23 +5,46 @@ import PropTypes from 'prop-types';
 const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0 0 30px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05), 0 0px 40px rgba(0, 0, 0, 0.08);
-  border-radius: 5px;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
   margin-bottom: 20px;
+  background-color: #fff;
+  padding: 25px;
+  &:hover {
+    background: #e9e9e9;
+  }
 `;
-const StyledTitle = styled.div`
-  padding: 32px;
+const StyledHeader = styled.div`
+  padding-bottom: 25px;
 `;
-const StyledBody = styled.div`
-  padding: 0 32px 0 32px;
+
+const StyledBody = styled.div``;
+
+const StyledName = styled.span`
+  padding-right: 5px;
+  font-size: 14px;
+`;
+
+const StyledUsername = styled.span`
+  font-size: 14px;
+  font-weight: 300;
+  color: #999;
+`;
+
+const StyledTitle = styled.span`
+  font-size: 18px;
+  font-weight: 800;
 `;
 
 const Tweet = ({ body, title, user }) => (
   <StyledWrapper>
-    <StyledTitle>
-      {user.name} // {user.username} // {title}
-    </StyledTitle>
+    <StyledHeader>
+      <StyledTitle>{title}</StyledTitle>
+      <br />
+      <StyledName>Posted by {user.name}</StyledName>
+      <StyledUsername>@{user.username}</StyledUsername>
+    </StyledHeader>
     <StyledBody>{body}</StyledBody>
   </StyledWrapper>
 );

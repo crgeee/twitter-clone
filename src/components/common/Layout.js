@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import GlobalStyles from './GlobalStyles';
 
 const Wrapper = styled.div`
@@ -16,5 +17,9 @@ const Layout = ({ children }) => (
     {children}
   </Wrapper>
 );
+
+Layout.propTypes = {
+  children: PropTypes.node.isRequired
+};
 
 export default Layout;
