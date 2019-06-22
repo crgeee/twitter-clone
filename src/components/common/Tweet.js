@@ -10,9 +10,14 @@ const StyledWrapper = styled.div`
   border-radius: 4px;
   margin-bottom: 20px;
   background-color: #fff;
+  transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
   padding: 25px;
+
   &:hover {
-    background: #f3f3f3;
+    background-color: #e9e9e9;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
   }
 `;
 
@@ -30,7 +35,7 @@ const StyledName = styled.span`
 const StyledUsername = styled.span`
   font-size: 14px;
   font-weight: 300;
-  color: #999;
+  color: #666;
 `;
 
 const StyledTitle = styled.span`

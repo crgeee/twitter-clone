@@ -39,9 +39,29 @@ const RightNav = styled.div`
     transition: all 0.2s ease;
     -webkit-transition: all 0.2s ease;
     color: #333;
+    position: relative;
 
     &:hover {
-      color: #a9a9a9;
+      color: #000;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 3px;
+      display: block;
+      margin-top: 5px;
+      right: 0;
+      background: #000;
+      transition: width 0.2s ease;
+      -webkit-transition: width 0.2s ease;
+    }
+
+    &:hover:after {
+      width: 100%;
+      left: 0;
+      background: #000;
     }
   }
 `;
