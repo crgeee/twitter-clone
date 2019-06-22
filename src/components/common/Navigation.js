@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 const Outter = styled.div`
   margin-top: 25px;
@@ -17,15 +19,46 @@ const Inner = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  & svg {
+    padding-right: 6px;
+  }
+`;
+
+const Title = styled.div``;
+
+const RightNav = styled.div`
+  display: flex;
+  flex-direction: row;
+  & div {
+    padding: 0 10px;
+  }
+
+  & a {
+    text-decoration: none;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    color: #333;
+
+    &:hover {
+      color: #a9a9a9;
+    }
+  }
 `;
 
 const Navigation = ({ children }) => {
   return (
     <Outter>
       <Inner>
-        {React.Children.map(children, (child, i) => (
-          <div key={i.toString()}>{child}</div>
-        ))}
+        <Title>
+          <FontAwesomeIcon icon={faCoffee} />
+          <span>tweeter</span>
+        </Title>
+        <RightNav>
+          {React.Children.map(children, (child, i) => (
+            <div key={i.toString()}>{child}</div>
+          ))}
+        </RightNav>
       </Inner>
     </Outter>
   );

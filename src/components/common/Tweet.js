@@ -12,7 +12,7 @@ const StyledWrapper = styled.div`
   background-color: #fff;
   padding: 25px;
   &:hover {
-    background: #e9e9e9;
+    background: #f3f3f3;
   }
 `;
 

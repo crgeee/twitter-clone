@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faComment } from '@fortawesome/free-solid-svg-icons';
 import Content from './components/common/Content';
 import Logger from './services/Logger';
 import Layout from './components/common/Layout';
@@ -13,24 +15,32 @@ class App extends React.Component {
   }
 
   render() {
+    const title = `tweeter`;
+    const getTitle = pageTitle => `${pageTitle} - ${title}`;
     return (
       <Layout>
         <BrowserRouter>
           <Content>
             <Navigation>
-              <NavLink to="/">Home</NavLink>
-              <NavLink to="/post">Post</NavLink>
+              <NavLink to="/" name="home">
+                <FontAwesomeIcon icon={faHome} />
+                Home
+              </NavLink>
+              <NavLink to="/post" name="post">
+                <FontAwesomeIcon icon={faComment} />
+                Post
+              </NavLink>
             </Navigation>
 
             <Route
               path="/"
               exact
-              render={props => <Home {...props} title="Tweeter" />}
+              render={props => <Home {...props} title={title} />}
             />
             <Route
               path="/post"
               render={props => (
-                <Post {...props} title="Make a post -- Tweeter" />
+                <Post {...props} title={getTitle('Make a post')} />
               )}
             />
           </Content>

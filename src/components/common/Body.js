@@ -8,5 +8,12 @@ const Body = styled.div`
   border-radius: 4px;
   background-color: #fff;
   width: 100%;
+
+  h1,
+  h2,
+  h3 {
+    padding: 0;
+    margin: 0;
+  }
 `;
 export default Body;
