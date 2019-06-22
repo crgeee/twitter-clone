@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Logger from '../../services/Logger';
 import List from '../common/List';
 import { delay, fetchPosts, fetchUsers } from '../../services/Network';
@@ -26,6 +27,8 @@ class Home extends React.Component {
   }
 
   async initialize() {
+    const { title } = this.props;
+    document.title = title;
     const { page } = this.state;
     await delay(500);
     await Promise.all([fetchPosts(), fetchUsers(page + 1)])
@@ -56,5 +59,9 @@ class Home extends React.Component {
     );
   }
 }
+
+Home.propTypes = {
+  title: PropTypes.string.isRequired
+};
 
 export default Home;

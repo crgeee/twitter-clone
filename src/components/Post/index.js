@@ -1,17 +1,20 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useState } from 'react';
 import Button from '../common/Button';
-import Form from '../common/Form';
 import Logger from '../../services/Logger';
 import Error from '../common/Error';
+import Body from '../common/Body';
 
-const Post = () => {
+const Post = props => {
   const [username, setUsername] = useState('');
   const [usernameValid, setUsernameValid] = useState(true);
   const [post, setPost] = useState('');
   const [postValid, setPostValid] = useState(true);
   const [fieldErrors, setFieldErrors] = useState([]);
   const [formValid, setFormValid] = useState(true);
+
+  useEffect(() => {
+    document.title = props.title;
+  });
 
   const handlePostInput = e => {
     const { name } = e.target;
@@ -48,10 +51,10 @@ const Post = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <Body>
+      <form onSubmit={handleSubmit} style={{ padding: '25px' }}>
         <h2>Make a post</h2>
-        <ol>
+        <ul>
           <li>
             <label htmlFor="username">Username</label>
           </li>
@@ -88,9 +91,9 @@ const Post = () => {
           <li>
             <Button type="submit" value="Post" />
           </li>
-        </ol>
+        </ul>
       </form>
-    </div>
+    </Body>
   );
 };
 

@@ -15,6 +15,7 @@ const StyledWrapper = styled.div`
     background: #e9e9e9;
   }
 `;
+
 const StyledHeader = styled.div`
   padding-bottom: 25px;
 `;

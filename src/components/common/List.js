@@ -1,11 +1,6 @@
 import React from 'react';
 import { animated, useTrail } from 'react-spring';
-import styled from 'styled-components';
 import Tweet from './Tweet';
-
-const StyledWrapper = styled.div`
-  padding: 20px auto 0;
-`;
 
 const List = props => {
   const { posts, users, isLoading, isError } = props;
@@ -16,7 +11,7 @@ const List = props => {
   return (
     !isLoading &&
     !isError && (
-      <StyledWrapper>
+      <div>
         {trail.map((styleProps, index) => {
           const { body, id, title, userId } = posts[index];
           return (
@@ -30,7 +25,7 @@ const List = props => {
             </animated.div>
           );
         })}
-      </StyledWrapper>
+      </div>
     )
   );
 };

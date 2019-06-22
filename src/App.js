@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route, NavLink } from 'react-router-dom';
 import Content from './components/common/Content';
 import Logger from './services/Logger';
 import Layout from './components/common/Layout';
@@ -9,21 +9,32 @@ import Navigation from './components/common/Navigation';
 
 class App extends React.Component {
   componentDidMount() {
-    Logger.info('component mounted');
+    Logger.info('App mounted');
   }
 
   render() {
     return (
       <Layout>
-        <Router>
-          <Navigation>
-            <Link to="/">Home</Link> / <Link to="/post">Post</Link>
-          </Navigation>
+        <BrowserRouter>
           <Content>
-            <Route path="/" exact component={Home} />
-            <Route path="/post" component={Post} />
+            <Navigation>
+              <NavLink to="/">Home</NavLink>
+              <NavLink to="/post">Post</NavLink>
+            </Navigation>
+
+            <Route
+              path="/"
+              exact
+              render={props => <Home {...props} title="Tweeter" />}
+            />
+            <Route
+              path="/post"
+              render={props => (
+                <Post {...props} title="Make a post -- Tweeter" />
+              )}
+            />
           </Content>
-        </Router>
+        </BrowserRouter>
       </Layout>
     );
   }
