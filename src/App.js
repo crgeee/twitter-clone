@@ -8,10 +8,16 @@ import Layout from './components/common/Layout';
 import Home from './components/Home';
 import Post from './components/Post';
 import Navigation from './components/common/Navigation';
+import Error from './components/common/Error';
 
 class App extends React.Component {
   componentDidMount() {
     Logger.info('App mounted');
+  }
+
+  componentDidCatch() {
+    // TODO handle better
+    return <Error>An error occurred.</Error>;
   }
 
   render() {
