@@ -16,6 +16,7 @@ const Home = props => {
   const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   function handleScroll() {
+    // TODO: set before bottom gets hit
     if (
       window.innerHeight + document.documentElement.scrollTop !==
       document.documentElement.offsetHeight
@@ -76,7 +77,7 @@ const Home = props => {
 
   if (isInitialLoad) return <Spinner />;
 
-  if (isError) return <Error />;
+  if (isError) return <Error>An error occurred. Try again</Error>;
 
   return (
     <div>
