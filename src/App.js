@@ -35,12 +35,12 @@ class App extends React.Component {
             <Route
               path="/"
               exact
-              render={props => <Home {...props} title={title} />}
+              render={props => <Home {...props} pageTitle={title} />}
             />
             <Route
               path="/post"
               render={props => (
-                <Post {...props} title={getTitle('Make a post')} />
+                <Post {...props} pageTitle={getTitle('Make a post')} />
               )}
             />
           </Content>
