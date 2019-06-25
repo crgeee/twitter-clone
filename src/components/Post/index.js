@@ -12,9 +12,12 @@ const Post = props => {
   const [fieldErrors, setFieldErrors] = useState([]);
   const [formValid, setFormValid] = useState(true);
 
+  /**
+   * Set page title on start up
+   */
   useEffect(() => {
-    document.title = props.title;
-  });
+    document.title = props.pageTitle;
+  }, []);
 
   const handlePostInput = e => {
     const { name } = e.target;

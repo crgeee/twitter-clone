@@ -15,6 +15,13 @@ const Home = props => {
   const [isError, setIsError] = useState(false);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
 
+  /**
+   * Set page title on start up
+   */
+  useEffect(() => {
+    document.title = props.pageTitle;
+  }, []);
+
   function handleScroll() {
     // TODO: set before bottom gets hit
     if (
@@ -77,8 +84,6 @@ const Home = props => {
 
   if (isInitialLoad) return <Spinner />;
 
-  if (isError) return <Error>An error occurred. Try again</Error>;
-
   return (
     <div>
       {trail.map((styleProps, index) => {
@@ -97,7 +102,8 @@ const Home = props => {
           </div>
         );
       })}
-      {isFetching && <div>Fetching results...</div>}
+      {isError && <Error>An error occurred. Try again</Error>}
+      {isFetching && <Spinner />}
     </div>
   );
 };

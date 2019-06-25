@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import React from 'react';
 import PropTypes from 'prop-types';
+import Avatar from './Avatar';
 
 const StyledWrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
   border-radius: 4px;
@@ -43,15 +44,24 @@ const StyledTitle = styled.span`
   font-weight: 800;
 `;
 
+const Inner = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const Tweet = ({ body, title, user }) => (
   <StyledWrapper>
-    <StyledHeader>
-      <StyledTitle>{title}</StyledTitle>
-      <br />
-      <StyledName>Posted by {user.name}</StyledName>
-      <StyledUsername>@{user.username}</StyledUsername>
-    </StyledHeader>
-    <StyledBody>{body}</StyledBody>
+    <Avatar />
+    <Inner>
+      {' '}
+      <StyledHeader>
+        <StyledTitle>{title}</StyledTitle>
+        <br />
+        <StyledName>Posted by {user.name}</StyledName>
+        <StyledUsername>@{user.username}</StyledUsername>
+      </StyledHeader>
+      <StyledBody>{body}</StyledBody>
+    </Inner>
   </StyledWrapper>
 );
 
