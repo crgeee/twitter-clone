@@ -13,7 +13,7 @@ const StyledWrapper = styled.div`
   background-color: #fff;
   transition: all 0.2s ease;
   -webkit-transition: all 0.2s ease;
-  padding: 25px;
+  padding: 20px;
 
   &:hover {
     background-color: #e9e9e9;
@@ -53,7 +53,6 @@ const Tweet = ({ body, title, user }) => (
   <StyledWrapper>
     <Avatar />
     <Inner>
-      {' '}
       <StyledHeader>
         <StyledTitle>{title}</StyledTitle>
         <br />

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { animated, useTrail } from 'react-spring';
+import PropTypes from 'prop-types';
 import Tweet from '../common/Tweet';
 import Spinner from '../common/Spinner';
 import { delay, fetchPosts, fetchUsers } from '../../services/Network';
@@ -106,6 +107,10 @@ const Home = props => {
       {isFetching && <Spinner />}
     </div>
   );
+};
+
+Home.propTypes = {
+  pageTitle: PropTypes.string.isRequired
 };
 
 export default Home;

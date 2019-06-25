@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ManSvg from '../../assets/016-man.svg';
+import ManSvg from '../../assets/avatars/016-man.svg';
 
 const Wrapper = styled.div`
   min-width: 60px;
@@ -12,7 +12,7 @@ const StyledAvatar = styled.div`
   -webkit-transform: scale(0.1);
   width: 35px;
   height: 35px;
-  margin: -10px 0 0 -20px;
+  margin: -12px 0 0 -20px;
 `;
 
 const Avatar = () => (
