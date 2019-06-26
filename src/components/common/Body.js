@@ -8,6 +8,7 @@ const Body = styled.div`
   border-radius: 4px;
   background-color: #fff;
   width: 100%;
+  margin-bottom: 25px;
 
   h1,
   h2,

@@ -72,7 +72,7 @@ const Navigation = ({ children }) => {
       <Inner>
         <Title>
           <FontAwesomeIcon icon={faCoffee} />
-          <span>tweeter</span>
+          <span>Tweeter</span>
         </Title>
         <RightNav>
           {React.Children.map(children, (child, i) => (

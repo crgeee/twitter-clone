@@ -15,7 +15,7 @@ const Wrapper = styled.div`
       font-size: 1rem;
       line-height: 1.5;
       width: 100%;
-      color: #495057;
+      color: #000;
       background-color: #fff;
       background-clip: padding-box;
       border: 1px solid #ced4da;
@@ -29,12 +29,23 @@ const Wrapper = styled.div`
 
 const Form = () => {
   const sendPost = () => {
-    // eslint-disable-next-line no-use-before-define
-    console.log(`username: ${inputs.username} post: ${inputs.post}`);
+    fetch('https://jsonplaceholder.typicode.com/posts', {
+      method: 'POST',
+      body: JSON.stringify({
+        title: inputs.title,
+        body: inputs.body,
+        userId: inputs.username
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8'
+      }
+    })
+      .then(response => response.json())
+      .then(json => console.log(json));
   };
 
   const { inputs, handleInput, handleSubmit } = usePostForm(
-    { username: '', post: '' },
+    { username: '', body: '', title: '' },
     sendPost
   );
 
@@ -44,33 +55,76 @@ const Form = () => {
       style={{ padding: '25px' }}
       autoComplete="off"
     >
-      <h2>Make a post</h2>
+      <h2>Create a post</h2>
       <Wrapper>
         <ul>
           <li>
-            <label htmlFor="username">
-              Username
-              <input
-                type="text"
-                name="username"
-                onChange={handleInput}
-                value={inputs.username}
-              />
+            <label
+              htmlFor="username"
+              style={{
+                display: 'flex',
+                flexDirection: 'row'
+              }}
+            >
+              <div style={{ width: '80px' }}>Username</div>
+              <div style={{ flexGrow: 1, paddingLeft: '10px' }}>
+                <input
+                  type="text"
+                  name="username"
+                  onChange={handleInput}
+                  value={inputs.username}
+                />
+              </div>
             </label>
           </li>
           <li>
-            <label htmlFor="post">
-              Post message
-              <textarea
-                type="text"
-                name="post"
-                onChange={handleInput}
-                value={inputs.post}
-                rows={5}
-              />
+            <label
+              htmlFor="title"
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                padding: '10px 0'
+              }}
+            >
+              <div style={{ width: '80px' }}>Title</div>
+              <div style={{ flexGrow: 1, paddingLeft: '10px' }}>
+                <input
+                  type="text"
+                  name="title"
+                  onChange={handleInput}
+                  value={inputs.title}
+                />
+              </div>
             </label>
           </li>
           <li>
+            <label
+              htmlFor="body"
+              style={{
+                display: 'flex',
+                flexDirection: 'row'
+              }}
+            >
+              <div style={{ width: '80px' }}>Body</div>
+              <div style={{ flexGrow: 1, paddingLeft: '10px' }}>
+                <textarea
+                  type="text"
+                  name="body"
+                  onChange={handleInput}
+                  value={inputs.body}
+                  rows={5}
+                  style={{ resize: 'none' }}
+                />
+              </div>
+            </label>
+          </li>
+          <li
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'right'
+            }}
+          >
             <Button type="submit" value="Post" />
           </li>
         </ul>

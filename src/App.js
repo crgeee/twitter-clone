@@ -21,7 +21,7 @@ class App extends React.Component {
   }
 
   render() {
-    const title = `tweeter`;
+    const title = `Tweeter`;
     const getTitle = pageTitle => `${pageTitle} - ${title}`;
     return (
       <Layout>
