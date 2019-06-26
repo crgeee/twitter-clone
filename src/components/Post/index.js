@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Body from '../common/Body';
-import Form from './Form';
+import PostForm from './PostForm';
 
 const Post = props => {
   /**
@@ -13,7 +13,7 @@ const Post = props => {
 
   return (
     <Body>
-      <Form />
+      <PostForm />
     </Body>
   );
 };

@@ -8,6 +8,9 @@ import Logger from '../../services/Logger';
 import Error from '../common/Error';
 
 const Home = props => {
+  /**
+   * State setters and getters using useState hook
+   */
   const [isFetching, setIsFetching] = useState(false);
   const [page, setPage] = useState(0);
   const [posts, setPosts] = useState([]);
@@ -17,14 +20,16 @@ const Home = props => {
   const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   /**
-   * Set page title on start up
+   * Set page title on initialization
    */
   useEffect(() => {
     document.title = props.pageTitle;
   }, []);
 
+  /**
+   * Handle scrolling and if it hits the bottom, set fetching state to true.
+   */
   function handleScroll() {
-    // TODO: set before bottom gets hit
     if (
       window.innerHeight + document.documentElement.scrollTop !==
       document.documentElement.offsetHeight
@@ -33,6 +38,9 @@ const Home = props => {
     setIsFetching(true);
   }
 
+  /**
+   * Fetches additional posts when scrolling to bottom.
+   */
   function fetchMorePosts() {
     const localPage = page + 1;
     return fetchPosts(localPage)
@@ -50,6 +58,9 @@ const Home = props => {
       });
   }
 
+  /**
+   * On initialization load posts and users.
+   */
   useEffect(() => {
     delay(500);
     const localPage = page + 1;
@@ -68,21 +79,33 @@ const Home = props => {
       });
   }, []);
 
+  /**
+   * Adds event listener for scrolling.
+   */
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  /**
+   * When isFetching is true, fetch more posts
+   */
   useEffect(() => {
     if (!isFetching) return;
     fetchMorePosts();
   }, [isFetching]);
 
+  /**
+   * Animation on initial load
+   */
   const trail = useTrail(animatedPosts.length, {
     from: { marginLeft: 0, opacity: 0, transform: 'translate3d(0,75px,0)' },
     to: { marginLeft: 0, opacity: 1, transform: 'translate3d(0,0px,0)' }
   });
 
+  /**
+   * Show spinner on initialization
+   */
   if (isInitialLoad) return <Spinner />;
 
   return (
@@ -104,7 +127,11 @@ const Home = props => {
         );
       })}
       {isError && <Error>An error occurred. Try again</Error>}
-      {isFetching && <Spinner />}
+      {isFetching && (
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Spinner />
+        </div>
+      )}
     </div>
   );
 };
