@@ -4,6 +4,10 @@ import Button from '../common/Button';
 import usePostForm from './usePostForm';
 
 const Wrapper = styled.div`
+  .form-main {
+    padding: 25px;
+  }
+
   & ul {
     list-style: none;
     padding: 0;
@@ -23,6 +27,27 @@ const Wrapper = styled.div`
       transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
       box-sizing: border-box;
       font-family: 'Roboto', sans-serif;
+    }
+
+    .form-label {
+      display: flex;
+      flex-direction: row;
+      padding: 10px 0;
+    }
+
+    .form-input-name {
+      width: 85px;
+    }
+
+    .form-input-value {
+      flex-grow: 1;
+      padding-left: 10px;
+    }
+
+    .form-submit-button {
+      display: flex;
+      flex-direction: row;
+      justify-content: right;
     }
   }
 `;
@@ -50,24 +75,14 @@ const Form = () => {
   );
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{ padding: '25px' }}
-      autoComplete="off"
-    >
-      <h2>Create a post</h2>
-      <Wrapper>
+    <Wrapper>
+      <form className="form-main" onSubmit={handleSubmit} autoComplete="off">
+        <h2>Create a post</h2>
         <ul>
           <li>
-            <label
-              htmlFor="username"
-              style={{
-                display: 'flex',
-                flexDirection: 'row'
-              }}
-            >
-              <div style={{ width: '80px' }}>Username</div>
-              <div style={{ flexGrow: 1, paddingLeft: '10px' }}>
+            <label htmlFor="username" className="form-label">
+              <div className="form-input-name">Username</div>
+              <div className="form-input-value">
                 <input
                   type="text"
                   name="username"
@@ -78,16 +93,9 @@ const Form = () => {
             </label>
           </li>
           <li>
-            <label
-              htmlFor="title"
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                padding: '10px 0'
-              }}
-            >
-              <div style={{ width: '80px' }}>Title</div>
-              <div style={{ flexGrow: 1, paddingLeft: '10px' }}>
+            <label htmlFor="title" className="form-label">
+              <div className="form-input-name">Title</div>
+              <div className="form-input-value">
                 <input
                   type="text"
                   name="title"
@@ -98,15 +106,9 @@ const Form = () => {
             </label>
           </li>
           <li>
-            <label
-              htmlFor="body"
-              style={{
-                display: 'flex',
-                flexDirection: 'row'
-              }}
-            >
-              <div style={{ width: '80px' }}>Body</div>
-              <div style={{ flexGrow: 1, paddingLeft: '10px' }}>
+            <label htmlFor="body" className="form-label">
+              <div className="form-input-name">Body</div>
+              <div className="form-input-value">
                 <textarea
                   type="text"
                   name="body"
@@ -118,18 +120,12 @@ const Form = () => {
               </div>
             </label>
           </li>
-          <li
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'right'
-            }}
-          >
+          <li className="form-submit-button">
             <Button type="submit" value="Post" />
           </li>
         </ul>
-      </Wrapper>
-    </form>
+      </form>
+    </Wrapper>
   );
 };
 
